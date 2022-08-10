@@ -64,7 +64,7 @@ class SEModule(nn.Layer):
     def forward(self, x):
         #x_se = self.avg_pool(x)
         # x_se = x.view(x.size(0), x.size(1), -1).mean(-1).view(x.size(0), x.size(1), 1, 1)
-        x_se = x.reshape([x.shape[0], x.shape[1], -1]).mean(-1).reshape([x.shape[0], x.shape[1], 1, 1])
+        x_se = x.reshape([x.shape[0], x.shape[1], x.shape[2]*x.shape[3]]).mean(-1).reshape([x.shape[0], x.shape[1], 1, 1])
         # x_se = paddle.reshape(x.clone(),[x.shape[0], x.shape[1], -1])
         # x_se = x_se.mean(-1)
         # x_se = paddle.reshape(x_se,[x.shape[0], x.shape[1], 1, 1])

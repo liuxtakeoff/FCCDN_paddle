@@ -22,10 +22,11 @@ class NL_Block(nn.Layer):
 
     def forward(self, x):
         batch_size, c, h, w = x.shape[0],x.shape[1], x.shape[2], x.shape[3]
-        value = self.conv_v(x).reshape([batch_size, c, -1])
+        value = self.conv_v(x)
+        value =value.reshape([batch_size, c, value.shape[2]*value.shape[3]])
         value = value.transpose([0, 2, 1])                                             #B * (H*W) * value_channels
-        key = x.reshape([batch_size, c, -1])                #B * key_channels * (H*W)
-        query = x.reshape([batch_size, c, -1])
+        key = x.reshape([batch_size, c, h*w])                #B * key_channels * (H*W)
+        query = x.reshape([batch_size, c,h*w])
         query = query.transpose([0, 2, 1])
         sim_map = paddle.matmul(query, key)                                         #B * (H*W) * (H*W)
         sim_map = (c**-.5) * sim_map                               #B * (H*W) * (H*W)

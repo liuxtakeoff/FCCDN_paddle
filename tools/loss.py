@@ -1,3 +1,16 @@
+# Copyright (c) 2021 PaddlePaddle Authors. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 import paddle
 import paddle.nn as nn
 import paddle.nn.functional as F
@@ -27,7 +40,7 @@ class dice_loss(nn.Layer):
         return loss
 
     def __call__(self, y_true, y_pred):
-        return self.soft_dice_loss(y_true, y_pred.to(dtype=paddle.float32))
+        return self.soft_dice_loss(y_true, y_pred.astype(paddle.float32))
 
 
 class MultiClass_DiceLoss(nn.Layer):
@@ -103,8 +116,8 @@ def FCCDN_loss_BCD(scores, labels):
     # labels = [binary_cd_labels, binary_cd_labels_downsampled2times]
     """ for binary change detection task"""
     criterion = dice_bce_loss()
-    loss_change = paddle.Tensor(0.0)
-    loss_aux = paddle.Tensor(0.0)
+    # loss_change = paddle.Tensor(0.0)
+    # loss_aux = paddle.Tensor(0.0)
     # change loss
     loss_change = criterion(scores[0], labels[0])
     # seg map

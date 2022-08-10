@@ -1,0 +1,18 @@
+#环境准备
+pip install albumentations
+pip uninstall opencv-python
+pip install opencv-python
+
+#数据集分割
+python tools/split_LEVIRCD.py --data_dir LEVIR-CD --out_dir Data
+
+#全量训练：
+python tools/train.py --batch_size 16 --workers 4
+#全量验证：
+python tools/eval.py
+
+
+#模型部署推理
+python deploy/export_model.py
+python deploy/infer.py
+

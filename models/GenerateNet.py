@@ -2,7 +2,7 @@
 # Written by Chen Pan
 # ----------------------------------------
 
-from networks.FCCDN import *
+from models.FCCDN import *
 
 
 model_dict = {
