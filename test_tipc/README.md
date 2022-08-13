@@ -16,7 +16,7 @@
 
 | 算法论文 | 模型名称 | 模型类型 | 基础<br>训练预测 | 更多<br>训练方式 | 更多<br>部署方式 | Slim<br>训练部署 |  更多<br>训练环境  |
 | :--- | :--- |  :----:  | :--------: |  :----:  |   :----:  |   :----:  |   :----:  |
-| [CutPaste: Self-Supervised Learning for Anomaly Detection and Localization](https://arxiv.org/pdf/2104.04015v1.pdf)     | resnet18_headlayer1 |  分类  | 支持 | - | -| - | Windows GPU/CPU |
+|[FCCDN: Feature Constraint Network for VHR Image Change Detection](https://arxiv.org/pdf/2105.10860.pdf)     | FCCDN |  分割  | 支持 | - | -| - | Windows GPU/CPU |
 
 
 ## 3. 测试工具简介
@@ -26,7 +26,7 @@
 ```
 test_tipc
     |--configs                              # 配置目录
-    |    |--model_name                      # 您的模型名称
+    |    |--FCCDN                      # 您的模型名称
     |           |--train_infer_python.txt   # 基础训练推理测试配置文件
     |--docs                                 # 文档目录
     |   |--test_train_inference_python.md   # 基础训练推理测试说明文档

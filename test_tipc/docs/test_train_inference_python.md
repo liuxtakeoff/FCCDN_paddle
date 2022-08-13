@@ -8,14 +8,14 @@ Linux GPU/CPU 基础训练推理测试的主程序为`test_train_inference_pytho
 
 | 算法名称 | 模型名称 | 单机单卡 | 单机多卡 |
 |  :----: |   :----:  |    :----:  |  :----:   |
-|  CutPaste  | resnet18 | 正常训练 | - |
+|  FCCDN  | FCCDN | 正常训练 | - |
 
 
 - 推理相关：
 
 | 算法名称 | 模型名称 | device_CPU | device_GPU | batchsize |
 |  :----:   |  :----: |   :----:   |  :----:  |   :----:   |
-|  CutPaste   |  resnet18 |  支持 | 支持 | 1 |
+|  FCCDN   |  FCCDN |  支持 | 支持 | 1 |
 
 
 ## 2. 测试流程
@@ -36,10 +36,8 @@ Linux GPU/CPU 基础训练推理测试的主程序为`test_train_inference_pytho
     pip install paddlepaddle==2.2.0
     ```
 
-- 安装依赖
-    ```
-    pip3 install  -r requirements.txt
-    ```
+- 安装依赖  
+依赖都比较常见，建议大家直接运行，再查漏补缺
 
 ### 2.3 功能测试
 
