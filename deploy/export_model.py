@@ -11,8 +11,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-import paddle
 from paddle.static import InputSpec
+import paddle
 import os
 import sys
 paddle.set_device("cpu")

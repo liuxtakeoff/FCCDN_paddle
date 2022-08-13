@@ -15,15 +15,11 @@ import sys
 import os
 __dir__ = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.abspath(os.path.join(__dir__, '../')))
-import paddle
 from paddle import inference
-import numpy as np
 from PIL import Image
+import numpy as np
+import paddle
 import cv2
-from paddle.vision import transforms
-
-
-# from preprocess_ops import ResizeImage, CenterCropImage, NormalizeImage, ToCHW, Compose
 
 
 class InferenceEngine(object):
@@ -150,7 +146,7 @@ def get_args(add_help=True):
     def str2bool(v):
         return v.lower() in ("true", "t", "1")
 
-    parser = argparse.ArgumentParser(description="PaddlePaddle Classification Training", add_help=add_help)
+    parser = argparse.ArgumentParser(description="PaddlePaddle Infer", add_help=add_help)
     parser.add_argument("--model-dir", default="deploy", help="inference model dir")
     parser.add_argument("--use-gpu", default=False, type=str2bool, help="use_gpu")
     parser.add_argument("--max-batch-size", default=16, type=int, help="max_batch_size")
@@ -198,9 +194,7 @@ def infer_main(args):
     imgB = inference_engine.preprocess(args.imgB_path)
     if args.benchmark:
         autolog.times.stamp()
-    # imgA = np.expand_dims(imgA, axis=0)
-    # imgB = np.expand_dims(imgB, axis=0)
-    # imgs = np.concatenate([imgA,imgB],axis=0)
+
     pre = imgA.unsqueeze(1)
     post = imgB.unsqueeze(1)
     imgs = paddle.concat([pre, post])
