@@ -1,18 +1,21 @@
-#环境准备
-pip install albumentations
-pip uninstall opencv-python
-pip install opencv-python
-
 #数据集分割
 python tools/split_LEVIRCD.py --data_dir LEVIR-CD --out_dir Data
 
 #全量训练：
 python tools/train.py --batch_size 16 --workers 4
-#全量验证：
-python tools/eval.py
+python tools/train_withminepoch.py --batch_size 16 --workers 4
+python tools/train_withminepoch.py --batch_size 16 --workers 8
 
+
+#全量验证：
+python tools/eval.py --pretrained_model logs/train/best.pdparams
+
+#小量训练
+python tools/train.py --batch_size 1 --data_dir lite_data --epochs 5
+#小量验证
+python tools/eval.py --data_dir lite_data
 
 #模型部署推理
 python deploy/export_model.py
-python deploy/infer.py
+python deploy/infer.py --imgA-path images/demoA.png --imgB-path images/demoB.png --result_savepath images
 
