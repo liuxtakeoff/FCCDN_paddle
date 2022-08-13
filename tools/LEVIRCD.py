@@ -11,114 +11,115 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-import copy
-import os.path as osp
-from pathlib import Path
-from paddle.io import Dataset
-import paddle
-import albumentations
-import PIL.Image as Image
-import scipy
-import random
 from paddle.vision.transforms import functional as F
-import paddle.vision.transforms as pptransforms
+from paddle.io import Dataset
+from pathlib import Path
 import numpy as np
+import paddle
+import random
 import cv2
+
+def shift_hsv_uint8(img, hue_shift, sat_shift, val_shift):
+    """copy from
+    https://github.com/albumentations-team/albumentations/blob/46e280f2240bfc0fc5d859a9d7cd7a5950437c0d/albumentations/augmentations/functional.py#L277"""
+    dtype = img.dtype
+    img = cv2.cvtColor(img, cv2.COLOR_RGB2HSV)
+    hue, sat, val = cv2.split(img)
+
+    if hue_shift != 0:
+        lut_hue = np.arange(0, 256, dtype=np.int16)
+        lut_hue = np.mod(lut_hue + hue_shift, 180).astype(dtype)
+        hue = cv2.LUT(hue, lut_hue)
+
+    if sat_shift != 0:
+        lut_sat = np.arange(0, 256, dtype=np.int16)
+        lut_sat = np.clip(lut_sat + sat_shift, 0, 255).astype(dtype)
+        sat = cv2.LUT(sat, lut_sat)
+
+    if val_shift != 0:
+        lut_val = np.arange(0, 256, dtype=np.int16)
+        lut_val = np.clip(lut_val + val_shift, 0, 255).astype(dtype)
+        val = cv2.LUT(val, lut_val)
+
+    img = cv2.merge((hue, sat, val)).astype(dtype)
+    img = cv2.cvtColor(img, cv2.COLOR_HSV2RGB)
+    return img
+
+def GaussNoise(img,var_limit=(10.0,50.0),mean=0):
+    var = random.uniform(var_limit[0],var_limit[1])
+    sigma = var**0.5
+    gauss = np.random.normal(mean,sigma,img.shape)
+    img = img.astype("float32")
+    return img + gauss
+
 def random_flip(imgs,prob = 0.5):
-    if random.random()<=prob:
-        imgs[0] = albumentations.hflip(imgs[0])
-        imgs[1] = albumentations.hflip(imgs[1])
-        imgs[2] = albumentations.hflip(imgs[2])
-    if random.random()<=prob:
-        imgs[0] = albumentations.vflip(imgs[0])
-        imgs[1] = albumentations.vflip(imgs[1])
-        imgs[2] = albumentations.vflip(imgs[2])
+    if random.random() <= prob:
+        _r = random.random()
+        if _r < 0.666667:
+            imgs[0] = F.hflip(imgs[0])
+            imgs[1] = F.hflip(imgs[1])
+            imgs[2] = F.hflip(imgs[2])
+        if _r >= 0.333333 :
+            imgs[0] = F.vflip(imgs[0])
+            imgs[1] = F.vflip(imgs[1])
+            imgs[2] = F.vflip(imgs[2])
     return imgs
 
 def random_transpose(imgs,prob=0.5):
-    if random.random()<=prob:
-        imgs[0] = albumentations.transpose(imgs[0])
-        imgs[1] = albumentations.transpose(imgs[1])
-        imgs[2] = albumentations.transpose(imgs[2])
+    if random.random() <= prob:
+        imgs[0] = imgs[0].transpose((1,0,2))
+        imgs[1] = imgs[1].transpose((1,0,2))
+        imgs[2] = imgs[2].transpose((1,0))
     return imgs
 
-def random_rotate(imgs,prob=0.3,degs=(-45,45)):
-    deg = random.uniform(degs[0],degs[1])
+def random_rotateandscale(imgs,prob=0.3,degs=(-45,45),scale_limit=0.1):
     if random.random() <= prob:
-        imgs[0] = albumentations.rotate(imgs[0],angle=deg)
-        imgs[1] = albumentations.rotate(imgs[1],angle=deg)
-        imgs[2] = albumentations.rotate(imgs[2],angle=deg)
-    return imgs
-
-def random_zoom(imgs,prob=0.3,maxscale=0.1):
-    if random.random() <= prob:
-        scale = random.uniform(1 - maxscale, 1 + maxscale)
+        deg = random.uniform(degs[0],degs[1])
+        scale = random.uniform(1-scale_limit,1+scale_limit)
         origin_H, origin_W = imgs[0].shape[0], imgs[0].shape[1]
-        new_H,new_W = int(origin_H*scale),int(origin_W*scale)
-
-        if new_H > origin_H:
-            imgs[0] = cv2.resize(imgs[0], (new_H, new_W))
-            imgs[1] = cv2.resize(imgs[1], (new_H, new_W))
-            imgs[2] = cv2.resize(imgs[2], (new_H, new_W))
-            err_H = new_H - origin_H
-            err_W = new_W - origin_W
-            loc_h = random.randint(0,err_H)
-            loc_w = random.randint(0,err_W)
-            imgs[0] = imgs[0][loc_h:loc_h+origin_H,loc_w:loc_w+origin_W]
-            imgs[1] = imgs[1][loc_h:loc_h + origin_H, loc_w:loc_w + origin_W]
-            imgs[2] = imgs[2][loc_h:loc_h + origin_H, loc_w:loc_w + origin_W]
-        elif new_H < origin_H:
-            #TODO:测试哪种zoom out方式更好：镜像填充，0填充
-            imgs[0] = cv2.resize(imgs[0], (new_H, new_W))
-            imgs[1] = cv2.resize(imgs[1], (new_H, new_W))
-            imgs[2] = cv2.resize(imgs[2], (new_H, new_W))
-            err_H = origin_H - new_H
-            err_W = origin_W - new_W
-            _top = random.randint(0,err_H)
-            _bot = err_H - _top
-            _left = random.randint(0,err_W)
-            _right = err_W-_left
-            imgs[0] = cv2.copyMakeBorder(imgs[0],_top,_bot,_left,_right,cv2.BORDER_REFLECT_101)
-            imgs[1] = cv2.copyMakeBorder(imgs[1],_top,_bot,_left,_right,cv2.BORDER_REFLECT_101)
-            imgs[2] = cv2.copyMakeBorder(imgs[2],_top,_bot,_left,_right,cv2.BORDER_REFLECT_101)
+        new_H,new_W = int(origin_H*3*scale),int(origin_W*3*scale)
+        # 先填充一圈
+        imgs[0] = cv2.copyMakeBorder(imgs[0], origin_H, origin_H, origin_W, origin_W, cv2.BORDER_REFLECT_101)
+        imgs[1] = cv2.copyMakeBorder(imgs[1], origin_H, origin_H, origin_W, origin_W, cv2.BORDER_REFLECT_101)
+        imgs[2] = cv2.copyMakeBorder(imgs[2], origin_H, origin_H, origin_W, origin_W, cv2.BORDER_REFLECT_101)
+        #进行zoom in/out
+        imgs[0] = cv2.resize(imgs[0], (new_H, new_W))
+        imgs[1] = cv2.resize(imgs[1], (new_H, new_W))
+        imgs[2] = cv2.resize(imgs[2], (new_H, new_W))
+        #进行旋转
+        imgs[0] = F.rotate(imgs[0], angle=deg)
+        imgs[1] = F.rotate(imgs[1], angle=deg)
+        imgs[2] = F.rotate(imgs[2], angle=deg)
+        #中心截取
+        imgs[0] = F.center_crop(imgs[0], (origin_H, origin_W))
+        imgs[1] = F.center_crop(imgs[1], (origin_H, origin_W))
+        imgs[2] = F.center_crop(np.expand_dims(imgs[2], axis=-1), (origin_H, origin_W))
+        imgs[2] = np.squeeze(imgs[2],axis=2)
     return imgs
 
 def random_shiftHSV(imgs,prob=0.3,H_shift=10,S_shift=5,V_shift=10):
     # TODO:测试哪种增强方式更好：分别变换，同步变换
-    # if random.random()<=prob:
-        #TODO:测试一下randomint会不会输出上限和下限
-        # H_shift = random.randint(-H_shift,H_shift)
-        # V_shift = random.randint(-V_shift,V_shift)
-        # S_shift = random.randint(-S_shift,S_shift)
-        # imgs[0] = albumentations.shift_hsv(imgs[0],H_shift,S_shift,V_shift)
-    trans = albumentations.augmentations.transforms.HueSaturationValue(H_shift, S_shift, V_shift, p=prob)
-    imgs[0] = trans(image=imgs[0])["image"]
-    imgs[1] = trans(image=imgs[1])["image"]
+    if random.random() <= prob:
+        h = random.randint(-H_shift,H_shift)
+        v = random.randint(-V_shift,V_shift)
+        s = random.randint(-S_shift,S_shift)
+        imgs[0] = shift_hsv_uint8(imgs[0],hue_shift=h,sat_shift=s,val_shift=v)
+    if random.random() <= prob:
+        h = random.randint(-H_shift, H_shift)
+        v = random.randint(-V_shift, V_shift)
+        s = random.randint(-S_shift, S_shift)
+        imgs[1] = shift_hsv_uint8(imgs[1],hue_shift=h,sat_shift=s,val_shift=v)
     return imgs
 
 def random_gaussiannoise(imgs,prob=0.3,mean=0,var=(10.0,50.0)):
     # TODO:测试哪种增强方式更好：分别变换，同步变换
-    # if random.random()<=prob:
-    #     _var = random.uniform(10,50)
-    #     imgs[0] = np.array(imgs[0],dtype="float")
-    #     noise = np.random.normal(mean,var**0.5,imgs[0].shape)
-    #     imgs[0]+=noise
-    #     np.clip(imgs[0],0,255)
-    #     imgs[0].astype("uint8")
-    #     imgs[0] = Image.fromarray(imgs[0])
-    #
-    #     imgs[1] = np.array(imgs[1], dtype="float")
-    #     noise = np.random.normal(mean, var ** 0.5, imgs[1].shape)
-    #     imgs[1] += noise
-    #     np.clip(imgs[1], 0, 255)
-    #     imgs[1].astype("uint8")
-    #     imgs[1] = Image.fromarray(imgs[1])
-    trans = albumentations.augmentations.transforms.GaussNoise(var_limit=var,mean=mean,p=prob)
-    imgs[0] = trans(image=imgs[0])["image"]
-    imgs[1] = trans(image=imgs[1])["image"]
+    if random.random() <= prob:
+        imgs[0] = GaussNoise(imgs[0],var,mean)
+    if random.random() <= prob:
+        imgs[1] = GaussNoise(imgs[1],var,mean)
     return imgs
 def random_exchange(imgs,prob=0.5):
-    if random.random()<prob:
+    if random.random() <= prob:
         imgs[0],imgs[1] = imgs[1],imgs[0]
     return imgs
 def normalize_tensor(imgs):
@@ -156,12 +157,13 @@ class LEVIRCD_DATASET(Dataset):
         if self.mode == "train":
             imgs = random_flip(imgs,prob=0.5)
             imgs = random_transpose(imgs,prob=0.5)
-            imgs = random_rotate(imgs,prob=0.3,degs=(-45,45))
-            imgs = random_zoom(imgs,prob=0.3,maxscale=0.1)
+            # imgs = random_rotate(imgs,prob=0.3,degs=(-45,45))
+            # imgs = random_zoom(imgs,prob=0.3,maxscale=0.1)
+            imgs = random_rotateandscale(imgs,prob=0.3,degs=(-45,45),scale_limit=0.1)
             imgs = random_shiftHSV(imgs,prob=0.3,H_shift=10,S_shift=5,V_shift=10)
             imgs = random_gaussiannoise(imgs,prob=0.3,mean=0,var=(10.0,50.0))
             imgs = random_exchange(imgs,prob=0.5)
-        #添加尺寸与输出相同的label
+        #添加尺寸与输出相同的label,用于计算损失
         _,imgs[2] = cv2.threshold(imgs[2],0,1,cv2.THRESH_BINARY)
         _h,_w = imgs[2].shape[0],imgs[2].shape[1]
         label_down2x = cv2.resize(imgs[2],(_h//2,_w//2))
@@ -171,15 +173,3 @@ class LEVIRCD_DATASET(Dataset):
 
     def __len__(self):
         return len(self.image_names_A)
-
-    def _binarize(self, mask, threshold=127):
-        return (mask > threshold).astype('int64')
-
-
-if __name__ == '__main__':
-    img = Image.open(r"F:\FCCDN_paddle\Data\test\label\test_1_0_0.png")
-    img = img.convert("L")
-    img = F.rotate(img,-18.5)
-    # img = img.convert("L")
-    img = np.asarray(img)
-    print(img.shape)

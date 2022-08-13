@@ -16,10 +16,10 @@ import os
 import sys
 __dir__ = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.abspath(os.path.join(__dir__, '../')))
+import PIL.Image as Image
 from tqdm import tqdm
 import argparse
-import math
-import PIL.Image as Image
+
 def split_data(image_path, block_size, save_path,overlap_ratio=0.5):
     img = Image.open(image_path)
     H,W = img.size[0],img.size[1]
@@ -49,16 +49,14 @@ if __name__ == '__main__':
 
     with tqdm(total=(445+64+128)*3) as pbar:
         for _dir in ["test","val","train"]:
-            # dataset_dir = osp.join(img_root,_dir)
-            # dataset_savedir = osp.join(img_saveroot,_dir)
             for _type in ["A","B","label"]:
                 img_dir = osp.join(img_root,_dir,_type)
                 img_savedir = osp.join(img_saveroot,_dir,_type)
                 if not osp.exists(img_savedir):
                     os.makedirs(img_savedir)
                 imgnames = os.listdir(img_dir)
-                #验证集和训练集不需要分割，直接复制粘贴即可
-                if _dir in ["test","val"]:
+                #测试集不需要分割，直接复制粘贴即可
+                if _dir in ["test"]:
                     for imgname in imgnames:
                         imgpath = osp.join(img_dir, imgname)
                         imgsavepath = osp.join(img_savedir, imgname)

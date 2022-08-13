@@ -15,17 +15,15 @@ import os
 import sys
 __dir__ = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.abspath(os.path.join(__dir__, '../')))
-import paddle
-from paddle.vision import transforms as T
-from tqdm import tqdm
-import cv2
-import argparse
-import numpy as np
 from tools.LEVIRCD import LEVIRCD_DATASET
 from paddle.io import DataLoader
 from models.FCCDN import FCCDN
+from tqdm import tqdm
+import paddle
+import argparse
+import cv2
 
-def eval_model(model,dataloader_val,test_out_path=None):
+def eval_model(model,dataloader_val,test_out_path=None,save_plot=False):
     with paddle.no_grad():
         model.eval()
         m_precision = paddle.metric.Precision()
@@ -33,8 +31,9 @@ def eval_model(model,dataloader_val,test_out_path=None):
         count = 0
         for batch in tqdm(dataloader_val):
             img_A,img_B,label = batch[0],batch[1],batch[2]
-            out = model(paddle.concat([img_A.unsqueeze(0),img_B.unsqueeze(0)],axis=0))
-            if not test_out_path == None:
+            inp = paddle.concat([img_A.unsqueeze(0), img_B.unsqueeze(0)], axis=0)
+            out = model(inp)
+            if save_plot:
                 #输出看看到底预测正确咩
                 change_mask = paddle.round(paddle.nn.functional.sigmoid(out[0])).cpu().numpy()
                 seg1 = paddle.round(paddle.nn.functional.sigmoid(out[1])).cpu().numpy()
@@ -43,11 +42,9 @@ def eval_model(model,dataloader_val,test_out_path=None):
                 cv2.imwrite(os.path.join(test_out_path, "seg1", "%d.png"%count), seg1[0,0]*255)
                 cv2.imwrite(os.path.join(test_out_path, "seg2", "%d.png"%count), seg2[0,0]*255)
                 count+=1
-            #TODO:是否需要加paddle.round
-            pre_change = paddle.flatten(out[0][0])
+            pre_change = paddle.flatten(out[0])
             label = paddle.flatten(label)
             pre_change = paddle.round(paddle.nn.functional.sigmoid(pre_change)).astype(paddle.int32)
-            # label =label.cpu().detach().numpy()
             m_precision.update(pre_change,label)
             m_recall.update(pre_change,label)
         precision = m_precision.accumulate()
@@ -57,9 +54,11 @@ def eval_model(model,dataloader_val,test_out_path=None):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Evalution change detection as described in the FCCDN Paper.')
     #定义验证参数
-    parser.add_argument('--cuda', default=True, type=bool, help='use cuda for training (default: False)')
+    parser.add_argument('--cuda', default=True, help='use cuda for training (default: False)')
     parser.add_argument('--pretrained', default=None, help='use pretrained model for training (default: None)')
     parser.add_argument('--workers', default=0, type=int, help="number of workers to use for data loading (default:0)")
+    parser.add_argument('--save_plot', default=False, help="save result pictures while eval (default:False)")
+    parser.add_argument('--batch_size', default=1, help="batch_size while eval (default:1)")
     #定义读取及保存地址
     parser.add_argument('--data_dir', default="Data/test", help='data dir for training (default: Data/test)')
     parser.add_argument('--out_dir', default="logs/eval", help='data dir for training (default: logs/eval)')
@@ -67,8 +66,12 @@ if __name__ == '__main__':
     # 定义模型参数
     parser.add_argument('--num_band', default=3, type=int, help='num_band param for building model (default: 3)')
     parser.add_argument('--os', default=16, type=int, help='os param for building model (default: 16)')
-    parser.add_argument('--use_se', default=True, type=bool, help='use se while building model (default: True)')
+    parser.add_argument('--use_se', default=True, help='use se while building model (default: True)')
     args = parser.parse_args()
+
+    args.save_plot = True if args.save_plot in ["True","true","1",True] else False
+    args.cuda = True if args.cuda in ["True","true","1",True] else False
+    args.use_se = True if args.use_se in ["True","true","1",True] else False
     print(args)
 
     test_in_path = args.data_dir                #定义测试集地址
@@ -83,14 +86,14 @@ if __name__ == '__main__':
     #make paths
     if not os.path.exists(test_out_path):
         os.makedirs(test_out_path)
-    if not os.path.exists(os.path.join(test_out_path, "change")):
-        os.makedirs(os.path.join(test_out_path, "change"))
-    if not os.path.exists(os.path.join(test_out_path, "label")):
-        os.makedirs(os.path.join(test_out_path, "label"))
-    if not os.path.exists(os.path.join(test_out_path, "seg1")):
-        os.makedirs(os.path.join(test_out_path, "seg1"))
-    if not os.path.exists(os.path.join(test_out_path, "seg2")):
-        os.makedirs(os.path.join(test_out_path, "seg2"))
+    if args.save_plot:
+        args.batch_size = 1
+        if not os.path.exists(os.path.join(test_out_path, "change")):
+            os.makedirs(os.path.join(test_out_path, "change"))
+        if not os.path.exists(os.path.join(test_out_path, "seg1")):
+            os.makedirs(os.path.join(test_out_path, "seg1"))
+        if not os.path.exists(os.path.join(test_out_path, "seg2")):
+            os.makedirs(os.path.join(test_out_path, "seg2"))
     #载入模型
     model = FCCDN(num_band=num_band,os=model_os, use_se=use_se)
     model_dict = paddle.load(pretrained_weights)
@@ -100,11 +103,11 @@ if __name__ == '__main__':
 
     dataset_test = LEVIRCD_DATASET(data_dir=test_in_path,mode="test")
     loader_test = DataLoader(dataset=dataset_test,
-                             batch_size=1,
+                             batch_size=args.batch_size,
                              num_workers=args.workers,
                              shuffle=False,
                              )
-    f1_score,precision,recall = eval_model(model,loader_test,test_out_path)
+    f1_score,precision,recall = eval_model(model,loader_test,test_out_path,args.save_plot)
     print("F1-score:%f precision:%f recall:%f"%(f1_score,precision,recall))
     with open(os.path.join(test_out_path,"eval_result.txt"),"w") as f:
         f.write("F1-score:%f precision:%f recall:%f"%(f1_score,precision,recall))
