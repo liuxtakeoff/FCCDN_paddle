@@ -3,19 +3,21 @@ python tools/split_LEVIRCD.py --data_dir LEVIR-CD --out_dir Data
 
 #全量训练：
 python tools/train.py --batch_size 16 --workers 4
-python tools/train_withminepoch.py --batch_size 16 --workers 4
-python tools/train_withminepoch.py --batch_size 16 --workers 8
-
-
 #全量验证：
 python tools/eval.py --pretrained_model logs/train/best.pdparams
 
 #小量训练
-python tools/train.py --batch_size 1 --data_dir lite_data --epochs 5
+python tools/train.py --batch_size 1 --data_dir lite_data --epochs 5 --val_epoch 1
 #小量验证
-python tools/eval.py --data_dir lite_data
+python tools/eval.py --data_dir lite_data/test
 
 #模型部署推理
 python deploy/export_model.py
 python deploy/infer.py --imgA-path images/demoA.png --imgB-path images/demoB.png --result_savepath images
+
+#tipc测试-prepare
+bash test_tipc/prepare.sh test_tipc/configs/FCCDN/train_infer_python.txt lite_train_lite_infer
+#tipc测试-tipc
+bash test_tipc/test_train_inference_python.sh test_tipc/configs/FCCDN/train_infer_python.txt lite_train_lite_infer
+
 
