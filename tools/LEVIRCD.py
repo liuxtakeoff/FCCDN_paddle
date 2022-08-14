@@ -157,8 +157,6 @@ class LEVIRCD_DATASET(Dataset):
         if self.mode == "train":
             imgs = random_flip(imgs,prob=0.5)
             imgs = random_transpose(imgs,prob=0.5)
-            # imgs = random_rotate(imgs,prob=0.3,degs=(-45,45))
-            # imgs = random_zoom(imgs,prob=0.3,maxscale=0.1)
             imgs = random_rotateandscale(imgs,prob=0.3,degs=(-45,45),scale_limit=0.1)
             imgs = random_shiftHSV(imgs,prob=0.3,H_shift=10,S_shift=5,V_shift=10)
             imgs = random_gaussiannoise(imgs,prob=0.3,mean=0,var=(10.0,50.0))
