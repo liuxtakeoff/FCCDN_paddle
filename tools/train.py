@@ -78,7 +78,7 @@ if __name__ == '__main__':
     parser.add_argument('--batch_size', default=16,type=int,help='batch size for training (default: 16 for 512 ,64 for 256)')
     parser.add_argument('--img_size', default=512,type=int, help='input image size for training (default: 512 for LEVIRCD)')
     parser.add_argument('--workers', default=0, type=int, help="number of workers to use for data loading (default:0)")
-    parser.add_argument('--epochs', default=99999, help="max epochs for training")
+    parser.add_argument('--epochs', default=99999,type=int, help="max epochs for training")
     #模型建立参数
     parser.add_argument('--num_band', default=3,type=int, help='num_band param for building model (default: 3)')
     parser.add_argument('--os', default=16,type=int, help='os param for building model (default: 16)')
@@ -106,7 +106,7 @@ if __name__ == '__main__':
     #学习率调度超参数
     lr_reduce_ratio = args.lr_reduce_ratio  # 学习率衰减比例
     max_reduce_time = args.max_reduce_time  # 第几次调整学习率时，结束训练
-    warmup_lrs = np.arange(1e-7,args.lr,(args.lr-1e-7)/args.warmup)
+
     lr = args.lr            #初始化学习率变量
     min_reduce_epochs = [int(n) for n in args.min_reduce_epochs.split(",")]
     last_improve_epoch = 0  # 初始化距离上次提升的轮次数
@@ -130,7 +130,8 @@ if __name__ == '__main__':
                                  persistent_workers=True, prefetch_factor=5
                                  )
     len_train = len(dataloader_train)
-
+    args.warmup = min(len_train,args.warmup)
+    warmup_lrs = np.arange(1e-7, args.lr, (args.lr - 1e-7) / args.warmup)
     # 建立验证数据集
     data_val_dir = os.path.join(args.data_dir, "val")
     dataset_val = LEVIRCD_DATASET(data_dir=data_val_dir, mode="val")
@@ -152,7 +153,7 @@ if __name__ == '__main__':
     print("start training!")
     with open(os.path.join(wt_save_path,"train_log.txt"),"w") as f:
         f.write("start training!\n")
-    for epoch in range(1,args.epochs):#会早停的，实际并不会走这么多轮
+    for epoch in range(1,args.epochs+1):#会早停的，实际并不会走这么多轮
         total_loss = 0
         #到达一定轮次后，开启验证环节
         if epoch == args.val_epoch:
@@ -160,7 +161,7 @@ if __name__ == '__main__':
         model.train()
         for ind,batch in enumerate(dataloader_train):
             optim.clear_grad()
-            if epoch == 1 and ind <= args.warmup:
+            if epoch == 1 and ind < args.warmup:
                 #先进行warm_up
                 optim.set_lr(warmup_lrs[ind])
             else:
