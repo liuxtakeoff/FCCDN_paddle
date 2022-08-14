@@ -34,7 +34,7 @@ FCCDN是一种性能优异的变化检测框架。其主要内容包括一个基
 - 数据集大小：共包含15个物品类别，解压分割后总大小在5.18G左右
 - 数据集下载链接：[LEVIR-CD](https://justchenhao.github.io/LEVIR/)
 - 训练权重下载链接：[logs](https://pan.baidu.com/s/1WbiHONiEadeBzJ0cBBbTCA) (提取码：7pfu)
-# 复现精度（Comparison to Li et al.）
+# 复现精度（Comparison to chenpan0615 et al.）
 
 |                  |    环境(env)     |    F1-score(%)    | precision(%)      |recall(%)          |
 | ---------------  | --------------- | -------------- | -------------- | -------------- |
