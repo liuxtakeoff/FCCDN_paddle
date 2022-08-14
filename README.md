@@ -39,7 +39,7 @@ FCCDN是一种性能优异的变化检测框架。其主要内容包括一个基
 |                  |    环境(env)     |    F1-score(%)    | precision(%)      |recall(%)          |
 | ---------------  | --------------- | -------------- | -------------- | -------------- |
 | FCCDN-torch(LEVIR-CD)  | RTX TITAN 24GB  |   92.29   |   93.07        |   91.52        |
-| FCCDN-paddle(LEVIR-CD) |    V100 32GB  |   92.02   |    92.74     |     91.31      |
+| FCCDN-paddle(LEVIR-CD) |    V100 32GB  |   92.28   |    93.18     |     91.41      |
 **与原论文区别点：**
 - 相比于论文采用了albumentations库，本项目使用paddle,numpy,opencv-python对albumentations的数据增强函数进行了迁移。
 - 根据论文作者的issue回复，添加了warmup策略，最开始两百步学习率从1e-7上升到初始学习率
@@ -148,20 +148,24 @@ python deploy/infer.py --imgA-path images/demoA.png --imgB-path images/demoB.png
 - 本项目TIPC脚本测试命令详见[Linux GPU/CPU 基础训练推理测试](test_tipc/docs/test_train_inference_python.md)
 ```bash
 #测试环境准备脚本
-bash test_tipc/prepare.sh test_tipc/configs/resnet18/train_infer_python.txt lite_train_lite_infer
+bash test_tipc/prepare.sh test_tipc/configs/FCCDN/train_infer_python.txt lite_train_lite_infer
 ```
 
 ```bash
 #测试训练验证推理一体化脚本
-bash test_tipc/test_train_inference_python.sh test_tipc/configs/resnet18/train_infer_python.txt lite_train_lite_infer
+bash test_tipc/test_train_inference_python.sh test_tipc/configs/FCCDN/train_infer_python.txt lite_train_lite_infer
 ```
 
 输出结果如下，表示命令运行成功。
 
 ```bash
- Run successfully with command - python3.7 tools/train.py --type lite --model_dir logs --output=./log/resnet18/lite_train_lite_infer/norm_train_gpus_0 --epochs=2   --batch_size=1!  
+ Run successfully with command - python3.7 tools/train.py --data_dir lite_data --val_epoch 1 --output=./log/FCCDN/lite_train_lite_infer/norm_train_gpus_0 --epochs=2   --batch_size=1!  
 ......
- Run successfully with command - python3.7 deploy/infer.py --use-gpu=True --model-dir=./log/resnet18/lite_train_lite_infer/norm_train_gpus_0 --batch-size=1   --benchmark=False > ./log/resnet18/lite_train_lite_infer/python_infer_gpu_batchsize_1.log 2>&1 !  
+ Run successfully with command - python3.7 tools/eval.py --data_dir lite_data/test --pretrained=./log/FCCDN/lite_train_lite_infer/norm_train_gpus_0/best.pdparams!  
+......
+ Run successfully with command - python3.7 deploy/export_model.py  --pretrained=./log/FCCDN/lite_train_lite_infer/norm_train_gpus_0/best.pdparams --save-inference-dir=./log/FCCDN/lite_train_lite_infer/norm_train_gpus_0!  
+......
+ Run successfully with command - python3.7 deploy/infer.py --imgA-path images/demoA.png --imgB-path images/demoB.png --use-gpu=True --model-dir=./log/FCCDN/lite_train_lite_infer/norm_train_gpus_0 --batch-size=1   --benchmark=False > ./log/FCCDN/lite_train_lite_infer/python_infer_gpu_batchsize_1.log 2>&1 !  
 ```
 
 ## 7. LICENSE
