@@ -39,7 +39,8 @@ FCCDN是一种性能优异的变化检测框架。其主要内容包括一个基
 |                  |    环境(env)     |    F1-score(%)    | precision(%)      |recall(%)          |
 | ---------------  | --------------- | -------------- | -------------- | -------------- |
 | FCCDN-torch(LEVIR-CD)  | RTX TITAN 24GB  |   92.29   |   93.07        |   91.52        |
-| FCCDN-paddle(LEVIR-CD) |    V100 32GB  |   92.28   |    93.18     |     91.41      |
+| FCCDN-paddle(LEVIR-CD) |    V100 32GB  |   92.28   |    93.18     |     91.41      |  
+
 **与原论文区别点：**
 - 相比于论文采用了albumentations库，本项目使用paddle,numpy,opencv-python对albumentations的数据增强函数进行了迁移。
 - 根据论文作者的issue回复，添加了warmup策略，最开始两百步学习率从1e-7上升到初始学习率
