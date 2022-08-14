@@ -1,0 +1,291 @@
+start training!
+epoch:1 loss:353.0278 avg_reader_cost:0.4250 avg_batch_cost:0.883 avg_ips:0.0552 lr:0.002000
+epoch:2 loss:175.1347 avg_reader_cost:0.4271 avg_batch_cost:0.878 avg_ips:0.0549 lr:0.002000
+epoch:3 loss:122.0818 avg_reader_cost:0.4283 avg_batch_cost:0.877 avg_ips:0.0548 lr:0.002000
+epoch:4 loss:104.1736 avg_reader_cost:0.4285 avg_batch_cost:0.876 avg_ips:0.0547 lr:0.002000
+epoch:5 loss:96.0664 avg_reader_cost:0.4292 avg_batch_cost:0.876 avg_ips:0.0547 lr:0.002000
+epoch:6 loss:90.8802 avg_reader_cost:0.4295 avg_batch_cost:0.875 avg_ips:0.0547 lr:0.002000
+epoch:7 loss:87.2448 avg_reader_cost:0.4302 avg_batch_cost:0.876 avg_ips:0.0547 lr:0.002000
+epoch:8 loss:81.2518 avg_reader_cost:0.4297 avg_batch_cost:0.875 avg_ips:0.0547 lr:0.002000
+epoch:9 loss:80.3588 avg_reader_cost:0.4295 avg_batch_cost:0.875 avg_ips:0.0547 lr:0.002000
+epoch:10 loss:74.4319 avg_reader_cost:0.4295 avg_batch_cost:0.875 avg_ips:0.0547 lr:0.002000
+epoch:11 loss:71.5623 avg_reader_cost:0.4295 avg_batch_cost:0.875 avg_ips:0.0547 lr:0.002000
+epoch:12 loss:70.9015 avg_reader_cost:0.4295 avg_batch_cost:0.875 avg_ips:0.0547 lr:0.002000
+epoch:13 loss:68.0844 avg_reader_cost:0.4296 avg_batch_cost:0.875 avg_ips:0.0547 lr:0.002000
+epoch:14 loss:72.2899 avg_reader_cost:0.4295 avg_batch_cost:0.874 avg_ips:0.0546 lr:0.002000
+epoch:15 loss:69.8081 avg_reader_cost:0.4294 avg_batch_cost:0.874 avg_ips:0.0546 lr:0.002000
+epoch:16 loss:63.2113 avg_reader_cost:0.4293 avg_batch_cost:0.874 avg_ips:0.0546 lr:0.002000
+epoch:17 loss:65.1523 avg_reader_cost:0.4292 avg_batch_cost:0.874 avg_ips:0.0546 lr:0.002000
+epoch:18 loss:62.0785 avg_reader_cost:0.4292 avg_batch_cost:0.874 avg_ips:0.0546 lr:0.002000
+epoch:19 loss:64.3479 avg_reader_cost:0.4291 avg_batch_cost:0.873 avg_ips:0.0546 lr:0.002000
+epoch:20 loss:61.7112 avg_reader_cost:0.4292 avg_batch_cost:0.874 avg_ips:0.0546 lr:0.002000
+epoch:21 loss:61.4720 avg_reader_cost:0.4292 avg_batch_cost:0.873 avg_ips:0.0546 lr:0.002000
+epoch:22 loss:58.1437 avg_reader_cost:0.4293 avg_batch_cost:0.873 avg_ips:0.0546 lr:0.002000
+epoch:23 loss:60.0705 avg_reader_cost:0.4293 avg_batch_cost:0.873 avg_ips:0.0546 lr:0.002000
+epoch:24 loss:58.5041 avg_reader_cost:0.4293 avg_batch_cost:0.873 avg_ips:0.0546 lr:0.002000
+epoch:25 loss:63.0751 avg_reader_cost:0.4294 avg_batch_cost:0.873 avg_ips:0.0546 lr:0.002000
+epoch:26 loss:56.8212 avg_reader_cost:0.4293 avg_batch_cost:0.873 avg_ips:0.0546 lr:0.002000
+epoch:27 loss:57.5695 avg_reader_cost:0.4292 avg_batch_cost:0.873 avg_ips:0.0546 lr:0.002000
+epoch:28 loss:58.1709 avg_reader_cost:0.4292 avg_batch_cost:0.873 avg_ips:0.0546 lr:0.002000
+epoch:29 loss:53.7743 avg_reader_cost:0.4292 avg_batch_cost:0.873 avg_ips:0.0546 lr:0.002000
+epoch:30 loss:57.8622 avg_reader_cost:0.4292 avg_batch_cost:0.873 avg_ips:0.0546 lr:0.002000
+epoch:30(lr_reduce：0 no_improve:0) F1-score:0.8995(best:0.8995)
+epoch:31 loss:53.7629 avg_reader_cost:0.4771 avg_batch_cost:0.921 avg_ips:0.0576 lr:0.002000
+epoch:31(lr_reduce：0 no_improve:1) F1-score:0.7703(best:0.8995)
+epoch:32 loss:53.0715 avg_reader_cost:0.5225 avg_batch_cost:0.966 avg_ips:0.0604 lr:0.002000
+epoch:32(lr_reduce：0 no_improve:0) F1-score:0.9070(best:0.9070)
+epoch:33 loss:52.6287 avg_reader_cost:0.5643 avg_batch_cost:1.008 avg_ips:0.0630 lr:0.002000
+epoch:33(lr_reduce：0 no_improve:0) F1-score:0.9071(best:0.9071)
+epoch:34 loss:55.5674 avg_reader_cost:0.6039 avg_batch_cost:1.048 avg_ips:0.0655 lr:0.002000
+epoch:34(lr_reduce：0 no_improve:1) F1-score:0.8682(best:0.9071)
+epoch:35 loss:53.4368 avg_reader_cost:0.6411 avg_batch_cost:1.085 avg_ips:0.0678 lr:0.002000
+epoch:35(lr_reduce：0 no_improve:2) F1-score:0.8748(best:0.9071)
+epoch:36 loss:56.5673 avg_reader_cost:0.6762 avg_batch_cost:1.120 avg_ips:0.0700 lr:0.002000
+epoch:36(lr_reduce：0 no_improve:3) F1-score:0.8639(best:0.9071)
+epoch:37 loss:55.0286 avg_reader_cost:0.7092 avg_batch_cost:1.153 avg_ips:0.0721 lr:0.002000
+epoch:37(lr_reduce：0 no_improve:0) F1-score:0.9090(best:0.9090)
+epoch:38 loss:52.8269 avg_reader_cost:0.7406 avg_batch_cost:1.184 avg_ips:0.0740 lr:0.002000
+epoch:38(lr_reduce：0 no_improve:1) F1-score:0.9001(best:0.9090)
+epoch:39 loss:54.2526 avg_reader_cost:0.7702 avg_batch_cost:1.214 avg_ips:0.0759 lr:0.002000
+epoch:39(lr_reduce：0 no_improve:2) F1-score:0.8314(best:0.9090)
+epoch:40 loss:50.8152 avg_reader_cost:0.7981 avg_batch_cost:1.242 avg_ips:0.0776 lr:0.002000
+epoch:40(lr_reduce：0 no_improve:3) F1-score:0.8951(best:0.9090)
+epoch:41 loss:50.8922 avg_reader_cost:0.8252 avg_batch_cost:1.269 avg_ips:0.0793 lr:0.002000
+epoch:41(lr_reduce：0 no_improve:4) F1-score:0.9084(best:0.9090)
+epoch:42 loss:51.6085 avg_reader_cost:0.8508 avg_batch_cost:1.294 avg_ips:0.0809 lr:0.002000
+epoch:42(lr_reduce：0 no_improve:0) F1-score:0.9156(best:0.9156)
+epoch:43 loss:48.3401 avg_reader_cost:0.8753 avg_batch_cost:1.319 avg_ips:0.0824 lr:0.002000
+epoch:43(lr_reduce：0 no_improve:1) F1-score:0.9101(best:0.9156)
+epoch:44 loss:50.8554 avg_reader_cost:0.8990 avg_batch_cost:1.342 avg_ips:0.0839 lr:0.002000
+epoch:44(lr_reduce：0 no_improve:2) F1-score:0.9090(best:0.9156)
+epoch:45 loss:51.4146 avg_reader_cost:0.9211 avg_batch_cost:1.364 avg_ips:0.0853 lr:0.002000
+epoch:45(lr_reduce：0 no_improve:3) F1-score:0.9077(best:0.9156)
+epoch:46 loss:48.4368 avg_reader_cost:0.9427 avg_batch_cost:1.386 avg_ips:0.0866 lr:0.002000
+epoch:46(lr_reduce：0 no_improve:4) F1-score:0.9076(best:0.9156)
+epoch:47 loss:49.2154 avg_reader_cost:0.9631 avg_batch_cost:1.407 avg_ips:0.0879 lr:0.002000
+epoch:47(lr_reduce：0 no_improve:5) F1-score:0.8811(best:0.9156)
+epoch:48 loss:55.8921 avg_reader_cost:0.9826 avg_batch_cost:1.426 avg_ips:0.0891 lr:0.002000
+epoch:48(lr_reduce：0 no_improve:6) F1-score:0.9073(best:0.9156)
+epoch:49 loss:52.2664 avg_reader_cost:1.0016 avg_batch_cost:1.445 avg_ips:0.0903 lr:0.002000
+epoch:49(lr_reduce：0 no_improve:7) F1-score:0.9046(best:0.9156)
+epoch:50 loss:48.9405 avg_reader_cost:1.0195 avg_batch_cost:1.463 avg_ips:0.0914 lr:0.002000
+epoch:50(lr_reduce：0 no_improve:8) F1-score:0.9072(best:0.9156)
+epoch:51 loss:48.3163 avg_reader_cost:1.0367 avg_batch_cost:1.480 avg_ips:0.0925 lr:0.002000
+epoch:51(lr_reduce：0 no_improve:9) F1-score:0.9079(best:0.9156)
+epoch:52 loss:49.0606 avg_reader_cost:1.0530 avg_batch_cost:1.496 avg_ips:0.0935 lr:0.002000
+epoch:52(lr_reduce：0 no_improve:10) F1-score:0.9121(best:0.9156)
+epoch:53 loss:47.7347 avg_reader_cost:1.0693 avg_batch_cost:1.513 avg_ips:0.0945 lr:0.002000
+epoch:53(lr_reduce：0 no_improve:11) F1-score:0.9127(best:0.9156)
+epoch:54 loss:49.6637 avg_reader_cost:1.0849 avg_batch_cost:1.528 avg_ips:0.0955 lr:0.002000
+epoch:54(lr_reduce：0 no_improve:12) F1-score:0.9054(best:0.9156)
+epoch:55 loss:46.8399 avg_reader_cost:1.0999 avg_batch_cost:1.543 avg_ips:0.0964 lr:0.002000
+epoch:55(lr_reduce：0 no_improve:13) F1-score:0.9061(best:0.9156)
+epoch:56 loss:46.3411 avg_reader_cost:1.1141 avg_batch_cost:1.557 avg_ips:0.0973 lr:0.002000
+epoch:56(lr_reduce：0 no_improve:13) F1-score:0.9165(best:0.9165)
+epoch:57 loss:47.5016 avg_reader_cost:1.1280 avg_batch_cost:1.571 avg_ips:0.0982 lr:0.002000
+epoch:57(lr_reduce：0 no_improve:14) F1-score:0.9165(best:0.9165)
+epoch:58 loss:48.6016 avg_reader_cost:1.1413 avg_batch_cost:1.584 avg_ips:0.0990 lr:0.002000
+epoch:58(lr_reduce：0 no_improve:15) F1-score:0.9093(best:0.9165)
+epoch:59 loss:46.9843 avg_reader_cost:1.1543 avg_batch_cost:1.597 avg_ips:0.0998 lr:0.002000
+epoch:59(lr_reduce：0 no_improve:16) F1-score:0.9145(best:0.9165)
+epoch:60 loss:46.4567 avg_reader_cost:1.1670 avg_batch_cost:1.610 avg_ips:0.1006 lr:0.002000
+epoch:60(lr_reduce：0 no_improve:17) F1-score:0.9103(best:0.9165)
+epoch:61 loss:49.3233 avg_reader_cost:1.1789 avg_batch_cost:1.622 avg_ips:0.1014 lr:0.002000
+epoch:61(lr_reduce：0 no_improve:18) F1-score:0.9094(best:0.9165)
+epoch:62 loss:45.8907 avg_reader_cost:1.1907 avg_batch_cost:1.634 avg_ips:0.1021 lr:0.002000
+epoch:62(lr_reduce：0 no_improve:19) F1-score:0.9086(best:0.9165)
+epoch:63 loss:46.7712 avg_reader_cost:1.2019 avg_batch_cost:1.645 avg_ips:0.1028 lr:0.002000
+epoch:63(lr_reduce：0 no_improve:20) F1-score:0.9122(best:0.9165)
+epoch:64 loss:50.1600 avg_reader_cost:1.2126 avg_batch_cost:1.656 avg_ips:0.1035 lr:0.002000
+epoch:64(lr_reduce：0 no_improve:21) F1-score:0.8796(best:0.9165)
+epoch:65 loss:50.5746 avg_reader_cost:1.2233 avg_batch_cost:1.666 avg_ips:0.1042 lr:0.002000
+epoch:65(lr_reduce：0 no_improve:22) F1-score:0.9140(best:0.9165)
+epoch:66 loss:45.9038 avg_reader_cost:1.2336 avg_batch_cost:1.677 avg_ips:0.1048 lr:0.002000
+epoch:66(lr_reduce：0 no_improve:23) F1-score:0.9132(best:0.9165)
+epoch:67 loss:45.6036 avg_reader_cost:1.2436 avg_batch_cost:1.687 avg_ips:0.1054 lr:0.002000
+epoch:67(lr_reduce：0 no_improve:24) F1-score:0.9150(best:0.9165)
+epoch:68 loss:46.5333 avg_reader_cost:1.2533 avg_batch_cost:1.696 avg_ips:0.1060 lr:0.002000
+epoch:68(lr_reduce：0 no_improve:25) F1-score:0.9025(best:0.9165)
+epoch:69 loss:44.6202 avg_reader_cost:1.2627 avg_batch_cost:1.706 avg_ips:0.1066 lr:0.002000
+epoch:69(lr_reduce：0 no_improve:26) F1-score:0.9148(best:0.9165)
+epoch:70 loss:46.0686 avg_reader_cost:1.2716 avg_batch_cost:1.715 avg_ips:0.1072 lr:0.002000
+epoch:70(lr_reduce：0 no_improve:26) F1-score:0.9183(best:0.9183)
+epoch:71 loss:44.5373 avg_reader_cost:1.2806 avg_batch_cost:1.724 avg_ips:0.1077 lr:0.002000
+epoch:71(lr_reduce：0 no_improve:27) F1-score:0.9180(best:0.9183)
+epoch:72 loss:43.8169 avg_reader_cost:1.2892 avg_batch_cost:1.732 avg_ips:0.1083 lr:0.002000
+epoch:72(lr_reduce：0 no_improve:28) F1-score:0.9126(best:0.9183)
+epoch:73 loss:45.3075 avg_reader_cost:1.2975 avg_batch_cost:1.740 avg_ips:0.1088 lr:0.002000
+epoch:73(lr_reduce：0 no_improve:29) F1-score:0.9182(best:0.9183)
+epoch:74 loss:43.9061 avg_reader_cost:1.3056 avg_batch_cost:1.749 avg_ips:0.1093 lr:0.002000
+epoch:74(lr_reduce：0 no_improve:30) F1-score:0.9174(best:0.9183)
+epoch:75 loss:44.7022 avg_reader_cost:1.3136 avg_batch_cost:1.757 avg_ips:0.1098 lr:0.002000
+epoch:75(lr_reduce：0 no_improve:30) F1-score:0.9196(best:0.9196)
+epoch:76 loss:51.3070 avg_reader_cost:1.3217 avg_batch_cost:1.765 avg_ips:0.1103 lr:0.002000
+epoch:76(lr_reduce：0 no_improve:31) F1-score:0.9104(best:0.9196)
+epoch:77 loss:46.7980 avg_reader_cost:1.3291 avg_batch_cost:1.772 avg_ips:0.1108 lr:0.002000
+epoch:77(lr_reduce：0 no_improve:32) F1-score:0.9160(best:0.9196)
+epoch:78 loss:44.0270 avg_reader_cost:1.3363 avg_batch_cost:1.779 avg_ips:0.1112 lr:0.002000
+epoch:78(lr_reduce：0 no_improve:33) F1-score:0.9138(best:0.9196)
+epoch:79 loss:44.1706 avg_reader_cost:1.3437 avg_batch_cost:1.787 avg_ips:0.1117 lr:0.002000
+epoch:79(lr_reduce：0 no_improve:34) F1-score:0.9141(best:0.9196)
+epoch:80 loss:43.5006 avg_reader_cost:1.3507 avg_batch_cost:1.794 avg_ips:0.1121 lr:0.002000
+epoch:80(lr_reduce：1 no_improve:0) F1-score:0.9165(best:0.9196)
+epoch:81 loss:41.7732 avg_reader_cost:1.3579 avg_batch_cost:1.801 avg_ips:0.1125 lr:0.000600
+epoch:81(lr_reduce：1 no_improve:0) F1-score:0.9227(best:0.9227)
+epoch:82 loss:41.4898 avg_reader_cost:1.3644 avg_batch_cost:1.807 avg_ips:0.1130 lr:0.000600
+epoch:82(lr_reduce：1 no_improve:1) F1-score:0.9193(best:0.9227)
+epoch:83 loss:40.8381 avg_reader_cost:1.3708 avg_batch_cost:1.814 avg_ips:0.1134 lr:0.000600
+epoch:83(lr_reduce：1 no_improve:2) F1-score:0.9151(best:0.9227)
+epoch:84 loss:40.3767 avg_reader_cost:1.3771 avg_batch_cost:1.820 avg_ips:0.1138 lr:0.000600
+epoch:84(lr_reduce：1 no_improve:3) F1-score:0.9123(best:0.9227)
+epoch:85 loss:40.8327 avg_reader_cost:1.3832 avg_batch_cost:1.826 avg_ips:0.1141 lr:0.000600
+epoch:85(lr_reduce：1 no_improve:4) F1-score:0.9148(best:0.9227)
+epoch:86 loss:41.1493 avg_reader_cost:1.3893 avg_batch_cost:1.832 avg_ips:0.1145 lr:0.000600
+epoch:86(lr_reduce：1 no_improve:5) F1-score:0.9176(best:0.9227)
+epoch:87 loss:40.7874 avg_reader_cost:1.3953 avg_batch_cost:1.838 avg_ips:0.1149 lr:0.000600
+epoch:87(lr_reduce：1 no_improve:6) F1-score:0.9218(best:0.9227)
+epoch:88 loss:40.7773 avg_reader_cost:1.4010 avg_batch_cost:1.844 avg_ips:0.1152 lr:0.000600
+epoch:88(lr_reduce：1 no_improve:0) F1-score:0.9231(best:0.9231)
+epoch:89 loss:40.5459 avg_reader_cost:1.4066 avg_batch_cost:1.849 avg_ips:0.1156 lr:0.000600
+epoch:89(lr_reduce：1 no_improve:1) F1-score:0.9212(best:0.9231)
+epoch:90 loss:40.1493 avg_reader_cost:1.4120 avg_batch_cost:1.855 avg_ips:0.1159 lr:0.000600
+epoch:90(lr_reduce：1 no_improve:2) F1-score:0.9164(best:0.9231)
+epoch:91 loss:40.9745 avg_reader_cost:1.4174 avg_batch_cost:1.860 avg_ips:0.1163 lr:0.000600
+epoch:91(lr_reduce：1 no_improve:3) F1-score:0.9224(best:0.9231)
+epoch:92 loss:40.0827 avg_reader_cost:1.4227 avg_batch_cost:1.866 avg_ips:0.1166 lr:0.000600
+epoch:92(lr_reduce：1 no_improve:4) F1-score:0.9169(best:0.9231)
+epoch:93 loss:40.7342 avg_reader_cost:1.4282 avg_batch_cost:1.871 avg_ips:0.1169 lr:0.000600
+epoch:93(lr_reduce：1 no_improve:5) F1-score:0.9205(best:0.9231)
+epoch:94 loss:40.1295 avg_reader_cost:1.4332 avg_batch_cost:1.876 avg_ips:0.1172 lr:0.000600
+epoch:94(lr_reduce：1 no_improve:6) F1-score:0.9225(best:0.9231)
+epoch:95 loss:39.4698 avg_reader_cost:1.4381 avg_batch_cost:1.881 avg_ips:0.1176 lr:0.000600
+epoch:95(lr_reduce：1 no_improve:7) F1-score:0.9162(best:0.9231)
+epoch:96 loss:39.4884 avg_reader_cost:1.4431 avg_batch_cost:1.886 avg_ips:0.1179 lr:0.000600
+epoch:96(lr_reduce：1 no_improve:8) F1-score:0.9167(best:0.9231)
+epoch:97 loss:39.3915 avg_reader_cost:1.4478 avg_batch_cost:1.891 avg_ips:0.1182 lr:0.000600
+epoch:97(lr_reduce：1 no_improve:9) F1-score:0.9158(best:0.9231)
+epoch:98 loss:39.6626 avg_reader_cost:1.4526 avg_batch_cost:1.895 avg_ips:0.1185 lr:0.000600
+epoch:98(lr_reduce：1 no_improve:10) F1-score:0.9160(best:0.9231)
+epoch:99 loss:40.1549 avg_reader_cost:1.4570 avg_batch_cost:1.900 avg_ips:0.1187 lr:0.000600
+epoch:99(lr_reduce：1 no_improve:11) F1-score:0.9145(best:0.9231)
+epoch:100 loss:39.4246 avg_reader_cost:1.4615 avg_batch_cost:1.904 avg_ips:0.1190 lr:0.000600
+epoch:100(lr_reduce：2 no_improve:0) F1-score:0.9194(best:0.9231)
+epoch:101 loss:38.9757 avg_reader_cost:1.4659 avg_batch_cost:1.909 avg_ips:0.1193 lr:0.000180
+epoch:101(lr_reduce：2 no_improve:0) F1-score:0.9244(best:0.9244)
+epoch:102 loss:38.5325 avg_reader_cost:1.4701 avg_batch_cost:1.913 avg_ips:0.1196 lr:0.000180
+epoch:102(lr_reduce：2 no_improve:1) F1-score:0.9208(best:0.9244)
+epoch:103 loss:38.6271 avg_reader_cost:1.4743 avg_batch_cost:1.917 avg_ips:0.1198 lr:0.000180
+epoch:103(lr_reduce：2 no_improve:2) F1-score:0.9175(best:0.9244)
+epoch:104 loss:38.7312 avg_reader_cost:1.4785 avg_batch_cost:1.921 avg_ips:0.1201 lr:0.000180
+epoch:104(lr_reduce：2 no_improve:3) F1-score:0.9209(best:0.9244)
+epoch:105 loss:38.6797 avg_reader_cost:1.4825 avg_batch_cost:1.925 avg_ips:0.1203 lr:0.000180
+epoch:105(lr_reduce：2 no_improve:4) F1-score:0.9244(best:0.9244)
+epoch:106 loss:38.5333 avg_reader_cost:1.4864 avg_batch_cost:1.929 avg_ips:0.1206 lr:0.000180
+epoch:106(lr_reduce：2 no_improve:5) F1-score:0.9243(best:0.9244)
+epoch:107 loss:38.6878 avg_reader_cost:1.4904 avg_batch_cost:1.933 avg_ips:0.1208 lr:0.000180
+epoch:107(lr_reduce：2 no_improve:6) F1-score:0.9230(best:0.9244)
+epoch:108 loss:37.9213 avg_reader_cost:1.4942 avg_batch_cost:1.937 avg_ips:0.1211 lr:0.000180
+epoch:108(lr_reduce：2 no_improve:0) F1-score:0.9245(best:0.9245)
+epoch:109 loss:38.3390 avg_reader_cost:1.4981 avg_batch_cost:1.941 avg_ips:0.1213 lr:0.000180
+epoch:109(lr_reduce：2 no_improve:1) F1-score:0.9191(best:0.9245)
+epoch:110 loss:38.8554 avg_reader_cost:1.5019 avg_batch_cost:1.945 avg_ips:0.1215 lr:0.000180
+epoch:110(lr_reduce：2 no_improve:2) F1-score:0.9165(best:0.9245)
+epoch:111 loss:38.2382 avg_reader_cost:1.5055 avg_batch_cost:1.948 avg_ips:0.1218 lr:0.000180
+epoch:111(lr_reduce：2 no_improve:3) F1-score:0.9217(best:0.9245)
+epoch:112 loss:38.3874 avg_reader_cost:1.5091 avg_batch_cost:1.952 avg_ips:0.1220 lr:0.000180
+epoch:112(lr_reduce：2 no_improve:4) F1-score:0.9197(best:0.9245)
+epoch:113 loss:38.1216 avg_reader_cost:1.5127 avg_batch_cost:1.955 avg_ips:0.1222 lr:0.000180
+epoch:113(lr_reduce：2 no_improve:5) F1-score:0.9228(best:0.9245)
+epoch:114 loss:38.1689 avg_reader_cost:1.5160 avg_batch_cost:1.959 avg_ips:0.1224 lr:0.000180
+epoch:114(lr_reduce：2 no_improve:6) F1-score:0.9232(best:0.9245)
+epoch:115 loss:38.8089 avg_reader_cost:1.5193 avg_batch_cost:1.962 avg_ips:0.1226 lr:0.000180
+epoch:115(lr_reduce：2 no_improve:7) F1-score:0.9170(best:0.9245)
+epoch:116 loss:38.5248 avg_reader_cost:1.5225 avg_batch_cost:1.965 avg_ips:0.1228 lr:0.000180
+epoch:116(lr_reduce：2 no_improve:8) F1-score:0.9180(best:0.9245)
+epoch:117 loss:38.2777 avg_reader_cost:1.5259 avg_batch_cost:1.969 avg_ips:0.1231 lr:0.000180
+epoch:117(lr_reduce：2 no_improve:9) F1-score:0.9207(best:0.9245)
+epoch:118 loss:38.5765 avg_reader_cost:1.5291 avg_batch_cost:1.972 avg_ips:0.1232 lr:0.000180
+epoch:118(lr_reduce：2 no_improve:10) F1-score:0.9212(best:0.9245)
+epoch:119 loss:38.1151 avg_reader_cost:1.5323 avg_batch_cost:1.975 avg_ips:0.1234 lr:0.000180
+epoch:119(lr_reduce：2 no_improve:11) F1-score:0.9226(best:0.9245)
+epoch:120 loss:38.2137 avg_reader_cost:1.5353 avg_batch_cost:1.978 avg_ips:0.1236 lr:0.000180
+epoch:120(lr_reduce：2 no_improve:12) F1-score:0.9210(best:0.9245)
+epoch:121 loss:37.8755 avg_reader_cost:1.5385 avg_batch_cost:1.981 avg_ips:0.1238 lr:0.000180
+epoch:121(lr_reduce：2 no_improve:12) F1-score:0.9251(best:0.9251)
+epoch:122 loss:37.8198 avg_reader_cost:1.5415 avg_batch_cost:1.984 avg_ips:0.1240 lr:0.000180
+epoch:122(lr_reduce：2 no_improve:13) F1-score:0.9200(best:0.9251)
+epoch:123 loss:37.5809 avg_reader_cost:1.5445 avg_batch_cost:1.987 avg_ips:0.1242 lr:0.000180
+epoch:123(lr_reduce：2 no_improve:14) F1-score:0.9221(best:0.9251)
+epoch:124 loss:38.1610 avg_reader_cost:1.5474 avg_batch_cost:1.990 avg_ips:0.1244 lr:0.000180
+epoch:124(lr_reduce：2 no_improve:14) F1-score:0.9254(best:0.9254)
+epoch:125 loss:38.0792 avg_reader_cost:1.5504 avg_batch_cost:1.993 avg_ips:0.1246 lr:0.000180
+epoch:125(lr_reduce：2 no_improve:15) F1-score:0.9213(best:0.9254)
+epoch:126 loss:38.3684 avg_reader_cost:1.5532 avg_batch_cost:1.996 avg_ips:0.1247 lr:0.000180
+epoch:126(lr_reduce：2 no_improve:16) F1-score:0.9220(best:0.9254)
+epoch:127 loss:37.8378 avg_reader_cost:1.5560 avg_batch_cost:1.999 avg_ips:0.1249 lr:0.000180
+epoch:127(lr_reduce：2 no_improve:17) F1-score:0.9146(best:0.9254)
+epoch:128 loss:37.5005 avg_reader_cost:1.5587 avg_batch_cost:2.001 avg_ips:0.1251 lr:0.000180
+epoch:128(lr_reduce：2 no_improve:18) F1-score:0.9225(best:0.9254)
+epoch:129 loss:38.1252 avg_reader_cost:1.5615 avg_batch_cost:2.004 avg_ips:0.1253 lr:0.000180
+epoch:129(lr_reduce：2 no_improve:19) F1-score:0.9236(best:0.9254)
+epoch:130 loss:37.9785 avg_reader_cost:1.5641 avg_batch_cost:2.007 avg_ips:0.1254 lr:0.000180
+epoch:130(lr_reduce：2 no_improve:20) F1-score:0.9222(best:0.9254)
+epoch:131 loss:37.8341 avg_reader_cost:1.5668 avg_batch_cost:2.010 avg_ips:0.1256 lr:0.000180
+epoch:131(lr_reduce：2 no_improve:21) F1-score:0.9236(best:0.9254)
+epoch:132 loss:38.2605 avg_reader_cost:1.5693 avg_batch_cost:2.012 avg_ips:0.1258 lr:0.000180
+epoch:132(lr_reduce：2 no_improve:22) F1-score:0.9185(best:0.9254)
+epoch:133 loss:37.8432 avg_reader_cost:1.5719 avg_batch_cost:2.015 avg_ips:0.1259 lr:0.000180
+epoch:133(lr_reduce：2 no_improve:23) F1-score:0.9221(best:0.9254)
+epoch:134 loss:37.8362 avg_reader_cost:1.5744 avg_batch_cost:2.017 avg_ips:0.1261 lr:0.000180
+epoch:134(lr_reduce：2 no_improve:24) F1-score:0.9238(best:0.9254)
+epoch:135 loss:37.6482 avg_reader_cost:1.5769 avg_batch_cost:2.020 avg_ips:0.1262 lr:0.000180
+epoch:135(lr_reduce：2 no_improve:25) F1-score:0.9183(best:0.9254)
+epoch:136 loss:37.9880 avg_reader_cost:1.5793 avg_batch_cost:2.022 avg_ips:0.1264 lr:0.000180
+epoch:136(lr_reduce：2 no_improve:26) F1-score:0.9175(best:0.9254)
+epoch:137 loss:37.8360 avg_reader_cost:1.5817 avg_batch_cost:2.024 avg_ips:0.1265 lr:0.000180
+epoch:137(lr_reduce：2 no_improve:27) F1-score:0.9218(best:0.9254)
+epoch:138 loss:37.8721 avg_reader_cost:1.5842 avg_batch_cost:2.027 avg_ips:0.1267 lr:0.000180
+epoch:138(lr_reduce：2 no_improve:28) F1-score:0.9237(best:0.9254)
+epoch:139 loss:37.8533 avg_reader_cost:1.5864 avg_batch_cost:2.029 avg_ips:0.1268 lr:0.000180
+epoch:139(lr_reduce：2 no_improve:29) F1-score:0.9239(best:0.9254)
+epoch:140 loss:37.8327 avg_reader_cost:1.5887 avg_batch_cost:2.031 avg_ips:0.1270 lr:0.000180
+epoch:140(lr_reduce：3 no_improve:0) F1-score:0.7361(best:0.9254)
+epoch:141 loss:37.5384 avg_reader_cost:1.5908 avg_batch_cost:2.034 avg_ips:0.1271 lr:0.000054
+epoch:141(lr_reduce：3 no_improve:1) F1-score:0.9219(best:0.9254)
+epoch:142 loss:38.2880 avg_reader_cost:1.5930 avg_batch_cost:2.036 avg_ips:0.1272 lr:0.000054
+epoch:142(lr_reduce：3 no_improve:2) F1-score:0.9206(best:0.9254)
+epoch:143 loss:38.0372 avg_reader_cost:1.5953 avg_batch_cost:2.038 avg_ips:0.1274 lr:0.000054
+epoch:143(lr_reduce：3 no_improve:3) F1-score:0.9149(best:0.9254)
+epoch:144 loss:37.2800 avg_reader_cost:1.5976 avg_batch_cost:2.040 avg_ips:0.1275 lr:0.000054
+epoch:144(lr_reduce：3 no_improve:4) F1-score:0.9215(best:0.9254)
+epoch:145 loss:37.3464 avg_reader_cost:1.5996 avg_batch_cost:2.042 avg_ips:0.1277 lr:0.000054
+epoch:145(lr_reduce：3 no_improve:5) F1-score:0.9205(best:0.9254)
+epoch:146 loss:37.6412 avg_reader_cost:1.6016 avg_batch_cost:2.044 avg_ips:0.1278 lr:0.000054
+epoch:146(lr_reduce：3 no_improve:6) F1-score:0.9214(best:0.9254)
+epoch:147 loss:37.2510 avg_reader_cost:1.6038 avg_batch_cost:2.047 avg_ips:0.1279 lr:0.000054
+epoch:147(lr_reduce：3 no_improve:7) F1-score:0.9244(best:0.9254)
+epoch:148 loss:38.2182 avg_reader_cost:1.6058 avg_batch_cost:2.049 avg_ips:0.1280 lr:0.000054
+epoch:148(lr_reduce：3 no_improve:8) F1-score:0.9228(best:0.9254)
+epoch:149 loss:37.1195 avg_reader_cost:1.6080 avg_batch_cost:2.051 avg_ips:0.1282 lr:0.000054
+epoch:149(lr_reduce：3 no_improve:9) F1-score:0.9221(best:0.9254)
+epoch:150 loss:37.5254 avg_reader_cost:1.6099 avg_batch_cost:2.053 avg_ips:0.1283 lr:0.000054
+epoch:150(lr_reduce：3 no_improve:10) F1-score:0.9224(best:0.9254)
+epoch:151 loss:37.2158 avg_reader_cost:1.6118 avg_batch_cost:2.055 avg_ips:0.1284 lr:0.000054
+epoch:151(lr_reduce：3 no_improve:11) F1-score:0.9241(best:0.9254)
+epoch:152 loss:37.1796 avg_reader_cost:1.6136 avg_batch_cost:2.057 avg_ips:0.1285 lr:0.000054
+epoch:152(lr_reduce：3 no_improve:12) F1-score:0.9248(best:0.9254)
+epoch:153 loss:36.8850 avg_reader_cost:1.6155 avg_batch_cost:2.058 avg_ips:0.1286 lr:0.000054
+epoch:153(lr_reduce：3 no_improve:13) F1-score:0.9219(best:0.9254)
+epoch:154 loss:37.1847 avg_reader_cost:1.6174 avg_batch_cost:2.060 avg_ips:0.1288 lr:0.000054
+epoch:154(lr_reduce：3 no_improve:14) F1-score:0.9140(best:0.9254)
+epoch:155 loss:37.7063 avg_reader_cost:1.6192 avg_batch_cost:2.062 avg_ips:0.1289 lr:0.000054
+epoch:155(lr_reduce：3 no_improve:15) F1-score:0.9244(best:0.9254)
+epoch:156 loss:37.8141 avg_reader_cost:1.6210 avg_batch_cost:2.064 avg_ips:0.1290 lr:0.000054
+epoch:156(lr_reduce：3 no_improve:16) F1-score:0.9174(best:0.9254)
+epoch:157 loss:37.6184 avg_reader_cost:1.6228 avg_batch_cost:2.066 avg_ips:0.1291 lr:0.000054
+epoch:157(lr_reduce：3 no_improve:17) F1-score:0.9207(best:0.9254)
+epoch:158 loss:37.8057 avg_reader_cost:1.6247 avg_batch_cost:2.068 avg_ips:0.1292 lr:0.000054
+epoch:158(lr_reduce：3 no_improve:18) F1-score:0.9232(best:0.9254)
+epoch:159 loss:37.2100 avg_reader_cost:1.6265 avg_batch_cost:2.069 avg_ips:0.1293 lr:0.000054
+epoch:159(lr_reduce：3 no_improve:19) F1-score:0.9205(best:0.9254)
+epoch:160 loss:37.1554 avg_reader_cost:1.6281 avg_batch_cost:2.071 avg_ips:0.1294 lr:0.000054
