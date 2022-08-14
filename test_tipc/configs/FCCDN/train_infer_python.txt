@@ -3,15 +3,15 @@ model_name:FCCDN
 python:python3.7
 gpu_list:0
 --cuda:True
---epochs:lite_train_lite_infer=2|whole_train_whole_infer=90
+--epochs:lite_train_lite_infer=2|whole_train_whole_infer=99999
 --output:logs
---batch_size:lite_train_lite_infer=1|whole_train_whole_infer=128
+--batch_size:lite_train_lite_infer=1|whole_train_whole_infer=16
 --pretrained:null
 train_model_name:best.pdparams
 --data-path:lite_data
 ##
 trainer:norm_train
-norm_train:tools/train.py --data_dir lite_data --log_dir logs
+norm_train:tools/train.py --data_dir lite_data --val_epoch 1
 ##
 ===========================eval_params===========================
 eval:tools/eval.py --data_dir lite_data/test
@@ -24,9 +24,9 @@ norm_export:deploy/export_model.py
 train_model:logs/train/best.pdparams
 infer_export:deploy/export_model.py 
 ##
-inference:deploy/infer.py --imgB-path:images/demoB.png
+inference:deploy/infer.py --imgA-path images/demoA.png --imgB-path images/demoB.png
 --use-gpu:True
 --batch-size:1
 --model-dir:deploy
---imgA-path:images/demoA.png
+--result_savepath:images
 --benchmark:False
