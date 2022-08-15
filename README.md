@@ -45,7 +45,7 @@ FCCDN是一种性能优异的变化检测框架。其主要内容包括一个基
 - 相比于论文采用了albumentations库，本项目使用paddle,numpy,opencv-python对albumentations的数据增强函数进行了迁移。
 - 根据论文作者的issue回复，添加了warmup策略，最开始两百步学习率从1e-7上升到初始学习率
 - 根据论文作者的issue回复，按照论文中的早停策略训练会出现提前结束的情况，因此添加了每个阶段的保底训练轮次（论文训练轮次的80%），防止过早结束训练,且最终训练轮次未超过论文训练轮次  
-论文作者回复如下：
+论文作者回复如下：  
 ![issue](issue.png)
 ## 3. 准备数据与环境
 
@@ -140,7 +140,7 @@ python deploy/export_model.py
 ```
 python deploy/infer.py --imgA-path images/demoA.png --imgB-path images/demoB.png --result_savepath images
 ```
-- 模型推理结果如下：
+- 模型推理结果如下：  
 ![export_model](export.png)
 ![infer](infer.png)
 
@@ -181,13 +181,13 @@ bash test_tipc/test_train_inference_python.sh test_tipc/configs/FCCDN/train_infe
 
 ## 附录.模型对齐
 ### 前向对齐
-统一虚拟数据，分别送入pytorch和paddle搭建的网络进行前向推理，输出结果及平均差值如下图所示：
-![前向对齐](check_model.png)
+统一虚拟数据，分别送入pytorch和paddle搭建的网络进行前向推理，输出结果及平均差值如下图所示：  
+![前向对齐](check_model.png)  
 最终误差为**3E-4**量级，经过排查原因出在pytorch和paddle的**Conv2D**模块的差异上，单一层卷积差异就有**7E-5**量级，几十层卷积层叠加起来，这个误差量级也就比较正常了。经询问技术老师，他也认为这个对齐精度也可以接受。  
-Conv2D模块误差测试如下，只要卷积前后通道数发生改变，有填充行为，填充模式为零填充，误差就会上升到**7E-5**：
-- **正常卷积：**
+Conv2D模块误差测试如下，只要卷积前后通道数发生改变，有填充行为，填充模式为零填充，误差就会上升到**7E-5**：  
+- **正常卷积：**  
 ![正常卷积](check_conv2.png)  
-- **不正常卷积：**
+- **不正常卷积：**  
 ![不正常卷积](check_conv1.png)
 ### 反向对齐
 统一虚拟数据，分别送入pytorch和paddle搭建的损失函数中进行损失计算，输出结果及平均差值如下图所示：  
