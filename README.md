@@ -2,21 +2,26 @@
 
 ## 目录
 
-- [1. 简介]()
-- [2. 数据集和复现精度]()
-- [3. 准备数据与环境]()
-    - [3.1 准备环境]()
-    - [3.2 准备数据]()
-- [4. 开始使用]()
-    - [4.1 模型训练]()
-    - [4.2 模型评估]()
-- [5. 模型推理部署]()
-- [6. 自动化测试脚本]()
-- [7. LICENSE]()
-- [8. 参考链接与文献]()
-- [附录.模型对齐]()
+- [1. 简介](#1)
+- [2. 数据集和复现精度](#2)
+- [3. 准备数据与环境](#3)
+    - [3.1 准备环境](#3.1)
+    - [3.2 准备数据](#3.2)
+- [4. 开始使用](#4)
+    - [4.1 模型训练](#4.1)
+    - [4.2 模型评估](#4.2)
+- [5. 模型推理部署](#5)
+- [6. 自动化测试脚本](#6)
+- [7. LICENSE](#7)
+- [8. 参考链接与文献](#8)
+- [附录.模型对齐](#fl)
 
-## 1. 简介
+
+
+ ## 1. 简介
+
+<span id='1'> </span>
+
 FCCDN是一种性能优异的变化检测框架。其主要内容包括一个基于编解码器的**dual encoder-decoder(DED)** 作为骨干网络，一个**nonlocal feature pyramid network(NL-FPN)**作为增强特征提取及融合模块，一个**dense connection-based feature fusion module (DFM)** 用于融合双时态图像特征，并且提出了一种基于类别分割的自监督任务用于提升模型性能。FCCDN具体框架结构如下图所示：
 ![FCCDN](FCCDN.png)
 
@@ -29,12 +34,15 @@ FCCDN是一种性能优异的变化检测框架。其主要内容包括一个基
 **aistudio体验教程:** [FCCDN_paddle](https://aistudio.baidu.com/aistudio/projectdetail/4411651)
 
 
+
 ## 2. 数据集和复现精度
+
+<span id='2'> </span>
 
 - 数据集大小：共包含train test val三组数据，每组数据包含A B label三个文件夹，解压分割后总大小在5.18G左右
 - 数据集下载链接：[LEVIR-CD](https://justchenhao.github.io/LEVIR/)
 - 训练权重下载链接：[logs](https://pan.baidu.com/s/1WbiHONiEadeBzJ0cBBbTCA) (提取码：7pfu)
-### 复现精度（Comparison to chen et al.）
+### 复现精度（Comparison to Chen et al.）
 
 |                  |    环境(env)     |    F1-score(%)    | precision(%)      |recall(%)          |
 | ---------------  | --------------- | -------------- | -------------- | -------------- |
@@ -46,11 +54,14 @@ FCCDN是一种性能优异的变化检测框架。其主要内容包括一个基
 - 根据论文作者的issue回复，添加了warmup策略，最开始两百步学习率从1e-7上升到初始学习率
 - 根据论文作者的issue回复，按照论文中的早停策略训练会出现提前结束的情况，因此添加了每个阶段的保底训练轮次（论文训练轮次的80%），防止过早结束训练,且最终训练轮次未超过论文训练轮次  
 论文作者回复如下：  
-![issue](issue.png)
+![issue](issue.png)  
 ## 3. 准备数据与环境
 
+<span id='3'> </span>
 
 ### 3.1 准备环境
+
+<span id='3.1'> </span>
 
 首先介绍下支持的硬件和框架版本等环境的要求：
 
@@ -63,6 +74,8 @@ FCCDN是一种性能优异的变化检测框架。其主要内容包括一个基
   - 如果使用AI-Studio平台则无需安装其他库，直接即可运行
   - 否则请自行查漏补缺，使用的库都为常见库
 ### 3.2 准备数据
+
+<span id='3.2'> </span>
 
 #### 全量数据训练：
   - 下载好 [LEVIR-CD](https://justchenhao.github.io/LEVIR/) 数据集
@@ -110,19 +123,24 @@ FCCDN是一种性能优异的变化检测框架。其主要内容包括一个基
 
 ## 4. 开始使用
 
+<span id='4'> </span>
 
 ### 4.1 模型训练
+
+<span id='4.1'> </span>
 
 - 全量数据训练：
   - 首先按照3.2节所述准备好数据
   - 运行指令`python tools/train.py --batch_size 16 --workers 4`
 - 少量数据训练：
   - 运行指令`python tools/train.py --batch_size 1 --data_dir lite_data --epochs 5`
-- 部分训练日志如下所示：
+- 部分训练日志如下所示：  
 ![training](training.png)
 
 
 ### 4.2 模型评估
+
+<span id='4.2'> </span>
 
 - 全量数据模型评估：`python tools/eval.py --pretrained_model logs/train/best.pdparams`
 - 少量数据模型评估：`python tools/eval.py --data_dir lite_data --pretrained_model logs/train/best.pdparams`，部分验证日志如下：  
@@ -131,6 +149,8 @@ FCCDN是一种性能优异的变化检测框架。其主要内容包括一个基
 ![eval_result](eval_result.png)
 
 ## 5. 模型推理部署
+
+<span id='5'> </span>
 
 - 模型导出：
 ```
@@ -141,10 +161,13 @@ python deploy/export_model.py
 python deploy/infer.py --imgA-path images/demoA.png --imgB-path images/demoB.png --result_savepath images
 ```
 - 模型推理结果如下：  
-![export_model](export.png)
+![export_model](export.png)  
 ![infer](infer.png)
 
 ## 6. 自动化测试脚本
+
+<span id='6'> </span>
+
 - tipc创建指南请见[tipc创建及基本使用方法。](https://github.com/PaddlePaddle/models/blob/release/2.2/tutorials/tipc/train_infer_python/test_train_infer_python.md)
 - 本项目TIPC脚本测试命令详见[Linux GPU/CPU 基础训练推理测试](test_tipc/docs/test_train_inference_python.md)
 ```bash
@@ -171,26 +194,34 @@ bash test_tipc/test_train_inference_python.sh test_tipc/configs/FCCDN/train_infe
 
 ## 7. LICENSE
 
+<span id='7'> </span>
+
 本项目的发布受[Apache 2.0 license](./LICENSE)许可认证。
 
 ## 8. 参考链接与文献
+
+<span id='8'> </span>
+
 **参考论文:** [FCCDN: Feature Constraint Network for VHR Image Change Detection](https://arxiv.org/pdf/2105.10860.pdf)
 
 **参考repo:** [FCCDN_pytorch](https://github.com/chenpan0615/FCCDN_pytorch)
 
 
 ## 附录.模型对齐
+
+<span id='fl'> </span>
+
 ### 前向对齐
 统一虚拟数据，分别送入pytorch和paddle搭建的网络进行前向推理，输出结果及平均差值如下图所示：  
 ![前向对齐](check_model.png)  
 最终误差为**3E-4**量级，经过排查原因出在pytorch和paddle的**Conv2D**模块的差异上，单一层卷积差异就有**7E-5**量级，几十层卷积层叠加起来，这个误差量级也就比较正常了。经询问技术老师，他也认为这个对齐精度也可以接受。  
 Conv2D模块误差测试如下，只要卷积前后通道数发生改变，有填充行为，填充模式为零填充，误差就会上升到**7E-5**：  
 - **正常卷积：**  
-![正常卷积](check_conv2.png)  
+![正常卷积](check_conv2.png)   
 - **不正常卷积：**  
-![不正常卷积](check_conv1.png)
+![不正常卷积](check_conv1.png)   
 ### 反向对齐
-统一虚拟数据，分别送入pytorch和paddle搭建的损失函数中进行损失计算，输出结果及平均差值如下图所示：  
-![反向对齐](check_loss.png)  
+统一虚拟数据，分别送入pytorch和paddle搭建的损失函数中进行损失计算，输出结果及平均差值如下图所示：    
+![反向对齐](check_loss.png)   
 最终误差近似为0
 
