@@ -17,10 +17,9 @@
 - [附录.模型对齐](#fl)
 
 
+<span id='1'> </span>
 
  ## 1. 简介
-
-<span id='1'> </span>
 
 FCCDN是一种性能优异的变化检测框架。其主要内容包括一个基于编解码器的**dual encoder-decoder(DED)** 作为骨干网络，一个**nonlocal feature pyramid network(NL-FPN)**作为增强特征提取及融合模块，一个**dense connection-based feature fusion module (DFM)** 用于融合双时态图像特征，并且提出了一种基于类别分割的自监督任务用于提升模型性能。FCCDN具体框架结构如下图所示：
 ![FCCDN](FCCDN.png)
@@ -33,11 +32,9 @@ FCCDN是一种性能优异的变化检测框架。其主要内容包括一个基
 
 **aistudio体验教程:** [FCCDN_paddle](https://aistudio.baidu.com/aistudio/projectdetail/4411651)
 
-
+<span id='2'> </span>
 
 ## 2. 数据集和复现精度
-
-<span id='2'> </span>
 
 - 数据集大小：共包含train test val三组数据，每组数据包含A B label三个文件夹，解压分割后总大小在5.18G左右
 - 数据集下载链接：[LEVIR-CD](https://justchenhao.github.io/LEVIR/)
@@ -55,13 +52,14 @@ FCCDN是一种性能优异的变化检测框架。其主要内容包括一个基
 - 根据论文作者的issue回复，按照论文中的早停策略训练会出现提前结束的情况，因此添加了每个阶段的保底训练轮次（论文训练轮次的80%），防止过早结束训练,且最终训练轮次未超过论文训练轮次  
 论文作者回复如下：  
 ![issue](issue.png)  
-## 3. 准备数据与环境
-
+  
 <span id='3'> </span>
 
-### 3.1 准备环境
+## 3. 准备数据与环境
 
 <span id='3.1'> </span>
+
+### 3.1 准备环境
 
 首先介绍下支持的硬件和框架版本等环境的要求：
 
@@ -72,10 +70,11 @@ FCCDN是一种性能优异的变化检测框架。其主要内容包括一个基
   - 安装GPU版本paddlepaddle:  
   `pip install paddlepaddle-gpu`
   - 如果使用AI-Studio平台则无需安装其他库，直接即可运行
-  - 否则请自行查漏补缺，使用的库都为常见库
-### 3.2 准备数据
-
+  - 否则请自行查漏补缺，使用的库都为常见库  
+  
 <span id='3.2'> </span>
+
+### 3.2 准备数据
 
 #### 全量数据训练：
   - 下载好 [LEVIR-CD](https://justchenhao.github.io/LEVIR/) 数据集
@@ -119,15 +118,14 @@ FCCDN是一种性能优异的变化检测框架。其主要内容包括一个基
   ```
 ####少量数据训练：
   - 无需下载数据集，使用lite_data里的数据即可
-  
-
-## 4. 开始使用
 
 <span id='4'> </span>
 
-### 4.1 模型训练
+## 4. 开始使用
 
 <span id='4.1'> </span>
+
+### 4.1 模型训练
 
 - 全量数据训练：
   - 首先按照3.2节所述准备好数据
@@ -137,20 +135,19 @@ FCCDN是一种性能优异的变化检测框架。其主要内容包括一个基
 - 部分训练日志如下所示：  
 ![training](training.png)
 
+<span id='4.2'> </span>
 
 ### 4.2 模型评估
-
-<span id='4.2'> </span>
 
 - 全量数据模型评估：`python tools/eval.py --pretrained_model logs/train/best.pdparams`
 - 少量数据模型评估：`python tools/eval.py --data_dir lite_data --pretrained_model logs/train/best.pdparams`，部分验证日志如下：  
 ![evaling](evaling.png)
 - 如果想要验证的过程中输出检测结果，需要加入参数`--save_plot True`,验证结果如下：  
-![eval_result](eval_result.png)
-
-## 5. 模型推理部署
+![eval_result](eval_result.png)  
 
 <span id='5'> </span>
+
+## 5. 模型推理部署
 
 - 模型导出：
 ```
@@ -162,11 +159,11 @@ python deploy/infer.py --imgA-path images/demoA.png --imgB-path images/demoB.png
 ```
 - 模型推理结果如下：  
 ![export_model](export.png)  
-![infer](infer.png)
-
-## 6. 自动化测试脚本
+![infer](infer.png)  
 
 <span id='6'> </span>
+
+## 6. 自动化测试脚本
 
 - tipc创建指南请见[tipc创建及基本使用方法。](https://github.com/PaddlePaddle/models/blob/release/2.2/tutorials/tipc/train_infer_python/test_train_infer_python.md)
 - 本项目TIPC脚本测试命令详见[Linux GPU/CPU 基础训练推理测试](test_tipc/docs/test_train_inference_python.md)
@@ -192,24 +189,23 @@ bash test_tipc/test_train_inference_python.sh test_tipc/configs/FCCDN/train_infe
  Run successfully with command - python3.7 deploy/infer.py --imgA-path images/demoA.png --imgB-path images/demoB.png --use-gpu=True --model-dir=./log/FCCDN/lite_train_lite_infer/norm_train_gpus_0 --batch-size=1   --benchmark=False > ./log/FCCDN/lite_train_lite_infer/python_infer_gpu_batchsize_1.log 2>&1 !  
 ```
 
-## 7. LICENSE
-
 <span id='7'> </span>
+
+## 7. LICENSE
 
 本项目的发布受[Apache 2.0 license](./LICENSE)许可认证。
 
-## 8. 参考链接与文献
-
 <span id='8'> </span>
+
+## 8. 参考链接与文献
 
 **参考论文:** [FCCDN: Feature Constraint Network for VHR Image Change Detection](https://arxiv.org/pdf/2105.10860.pdf)
 
 **参考repo:** [FCCDN_pytorch](https://github.com/chenpan0615/FCCDN_pytorch)
 
+<span id='fl'> </span>
 
 ## 附录.模型对齐
-
-<span id='fl'> </span>
 
 ### 前向对齐
 统一虚拟数据，分别送入pytorch和paddle搭建的网络进行前向推理，输出结果及平均差值如下图所示：  
