@@ -43,6 +43,8 @@ if [ ${MODE} = "lite_train_lite_infer" ];then
         popd
         # download pretrained weights
         wget -nc -P ./data https://videotag.bj.bcebos.com/PaddleVideo/PretrainModel/ResNet50_vd_ssld_v2_pretrained.pdparams --no-check-certificate
+    elif [ ${model_name} == "FCCDN" ]; then
+        echo "FCCDN has been prepared successfully!"
     elif [ ${model_name} == "PP-TSN" ]; then
         # pretrain lite train data
         pushd ./data/k400
@@ -138,6 +140,8 @@ elif [ ${MODE} = "whole_train_whole_infer" ];then
         popd
         # download pretrained weights
         wget -nc -P ./data https://videotag.bj.bcebos.com/PaddleVideo/PretrainModel/ResNet50_vd_ssld_v2_pretrained.pdparams --no-check-certificate
+    elif [ ${model_name} == "FCCDN" ]; then
+        echo "FCCDN has been prepared successfully!"
     elif [ ${model_name} == "PP-TSN" ]; then
         # pretrain whole train data
         pushd ./data/k400
